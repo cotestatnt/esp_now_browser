@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 2673247 */
+  src: url('fonts/iconfont.woff2?t=1626258152287') format('woff2'),
+  url('fonts/iconfont.woff?t=1626258152287') format('woff'),
+  url('fonts/iconfont.ttf?t=1626258152287') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-switch:before {
+  content: "\e768";
+}
+
+.icon-config:before {
+  content: "\e65e";
+}
+
+.icon-ota:before {
+  content: "\e65f";
+}
+
+.icon-test:before {
+  content: "\e660";
+}
+
+.icon-debug:before {
+  content: "\e661";
+}
+
+.icon-control:before {
+  content: "\e663";
+}
+
+.icon-search:before {
+  content: "\e631";
+}
+
+.icon-one:before {
+  content: "\ea6f";
+}
+
+.icon-four:before {
+  content: "\e65d";
+}
+
+.icon-two:before {
+  content: "\ea3e";
+}
+
+.icon-three:before {
+  content: "\ea3f";
+}
+
+.icon-left:before {
+  content: "\e64f";
+}
+
+.icon-up:before {
+  content: "\e734";
+}
+
+.icon-down:before {
+  content: "\e6f0";
+}
+
+.icon-reboot:before {
+  content: "\e68e";
+}
+
+.icon-warning:before {
+  content: "\e651";
+}
+
+.icon-crash:before {
+  content: "\e60a";
+}
+
+.icon-error:before {
+  content: "\e654";
+}
+
+.icon-network:before {
+  content: "\e662";
+}
+
+.icon-devices:before {
+  content: "\e62c";
+}
