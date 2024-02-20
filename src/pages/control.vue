@@ -2,7 +2,7 @@
   <div class="main-wrap">
     <div class="table control-table-wrap">
       <h3 class="name flex flex-ac flex-jcs">
-        <span>设备列表</span>
+        <span>Device List</span>
         <div class="filter-wrap">
           <div class="search-item">
             <v-select @input="selectAppVersion"  :options="appVersions" v-model="searchName"></v-select>
@@ -11,13 +11,13 @@
       </h3>
       <div class="info">
         <div class="btn-wrap">
-          <button @click="getDeviceList" class="btn">刷新列表</button>
-          <button @click="showControl()" class="btn">设备控制</button>
-          <button @click="sendBind()" class="btn">设备绑定</button>
+          <button @click="getDeviceList" class="btn">Refresh list</button>
+          <button @click="showControl()" class="btn">Equipment control</button>
+          <button @click="sendBind()" class="btn">Device binding</button>
         </div>
-        <esp-table ref="deviceListTable" operate-text="状态" @selection-change="selectDevice" :th-headers="thHeaders" :data="filterList">
+        <esp-table ref="deviceListTable" operate-text="state" @selection-change="selectDevice" :th-headers="thHeaders" :data="filterList">
           <template slot-scope="scope">
-            <span :class="scope.row.rssi > -63 ? 'green' : 'red'">{{scope.row.rssi > -63 ? '已绑定' : '未绑定'}}</span>
+            <span :class="scope.row.rssi > -63 ? 'green' : 'red'">{{scope.row.rssi > -63 ? 'Bind' : 'Unbound'}}</span>
           </template>
         </esp-table>
       </div>
@@ -33,19 +33,19 @@
         </div>
         <div class="item-wrap">
           <div class="item">
-            <label class="label">广播重传次数：</label>
+            <label class="label">Number of retransmit (broadcasting):</label>
             <div class="input-wrap">
               <input v-model="retransmitCount" @input="changeRetransmitCount" min="0" class="form-control" type="number" >
             </div>
           </div>
           <div class="item">
-            <label class="label">转发跳数：</label>
+            <label class="label">Forward the jump number:</label>
             <div class="input-wrap">
               <input v-model="forwardTtl" @input="changeForwardTtl"  min="0" class="form-control"  type="number" >
             </div>
           </div>
           <div class="item">
-            <label class="label">转发信号：</label>
+            <label class="label">Forward signal:</label>
             <div class="input-wrap">
               <input v-model="forwardRssi" @input="changeForwardRssi" max="0" class="form-control"  type="number" >
             </div>
@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="item">
-            <label class="label">过滤弱信号：</label>
+            <label class="label">Filtering the weak signal:</label>
             <div class="input-wrap  flex">
               <label @click="selectFilterWeakSignal(1)"  :class="{'checked': filterWeakSignal === 1}" class="radio-wrap">
                 <span class="radio"></span>
@@ -77,7 +77,7 @@
             </div>
           </div>
           <div class="item">
-            <label class="label">过滤相邻信道：</label>
+            <label class="label">Filter the adjacent channel:</label>
             <div class="input-wrap  flex">
               <label @click="selectFilterAdjacentChannel(1)"  :class="{'checked': filterAdjacentChannel === 1}" class="radio-wrap">
                 <span class="radio"></span>
@@ -148,11 +148,11 @@ export default {
       this.$loading.show()
       sendBind().then(res => {
         this.$loading.hide()
-        this.$notify({ type: 'success', message: '发送绑定命令成功' })
+        this.$notify({ type: 'success', message: 'Send the binding command successfully' })
       }).catch(err => {
         this.$loading.hide()
         console.log(err)
-        this.$notify({ type: 'error', message: '发送绑定命令失败' })
+        this.$notify({ type: 'error', message: 'Sending binding commands failed' })
       })
     },
     sendControl () {
@@ -161,11 +161,11 @@ export default {
         .then(res => {
           this.$loading.hide()
           console.log(res)
-          this.$notify({ type: 'success', message: '发送控制命令成功' })
+          this.$notify({ type: 'success', message: 'Send the control command successfully' })
         }).catch(err => {
           console.log(err)
           this.$loading.hide()
-          this.$notify({ type: 'error', message: '发送控制命令失败' })
+          this.$notify({ type: 'error', message: 'Sending control command failed' })
         })
     },
     selectAppVersion (name) {
@@ -226,7 +226,7 @@ export default {
     },
     showControl () {
       if (this.selectMacs.length === 0) {
-        this.$notify({ type: 'warning', message: '请选择设备' })
+        this.$notify({ type: 'warning', message: 'Please select the device' })
         return
       }
       this.isShowControl = true

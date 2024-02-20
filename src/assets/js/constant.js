@@ -76,11 +76,11 @@ module.exports = {
   TH_HEADERS: [
     {label: '', props: 'src_addr', isSort: false, isCheckBox: true},
     {label: '#', props: 'src_addr', isSort: false, isShowNo: true},
-    {label: 'Mac 地址', props: 'src_addr', isSort: true},
-    {label: '信号', props: 'rssi', isSort: true},
-    {label: '项目名称', props: 'project_name', isSort: true},
-    {label: '应用版本', props: 'app_version', isSort: false},
-    {label: 'IDF 版本', props: 'esp-idf_version', isSort: false},
-    {label: '编译时间', props: 'compile_time', isSort: false}
+    {label: 'Mac address', props: 'src_addr', isSort: true},
+    {label: 'Signal', props: 'rssi', isSort: true},
+    {label: 'Project name', props: 'project_name', isSort: true},
+    {label: 'App', props: 'app_version', isSort: false},
+    {label: 'IDF Version', props: 'esp-idf_version', isSort: false},
+    {label: 'Compile time', props: 'compile_time', isSort: false}
   ]
 }

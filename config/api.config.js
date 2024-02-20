@@ -1,6 +1,6 @@
-// 判断是否是生产环境
+// Determine whether it is a production environment
 var isPro = process.env.NODE_ENV === 'production'
-// 根据环境不同导出不同的 baseURL
+// Different exports depending on the environment baseURL
 module.exports = {
   baseURL: isPro ? 'http://espnow-webserver/' : '/api'
 }

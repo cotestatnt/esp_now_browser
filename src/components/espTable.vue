@@ -42,7 +42,7 @@
         </table>
       </div>
     </div>
-    <p v-if="data.length === 0" class="no-data textCenter">暂无数据</p>
+    <p v-if="data.length === 0" class="no-data textCenter">No data</p>
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
     },
     operateText: {
       type: String,
-      default: '操作'
+      default: 'Operate'
     }
   },
   data () {

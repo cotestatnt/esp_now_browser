@@ -2,7 +2,7 @@
   <div class="main-wrap">
     <div class="table">
       <h3 class="name flex flex-ac flex-jcs">
-        <span>设备列表</span>
+        <span>Device List</span>
         <div class="filter-wrap">
           <div class="search-item">
             <v-select @input="selectAppVersion"  :options="appVersions" v-model="searchName"></v-select>
@@ -11,12 +11,12 @@
       </h3>
       <div class="info">
         <div class="btn-wrap">
-          <button @click="getDeviceList" class="btn">刷新列表</button>
-          <button @click="showControl()" class="btn">设备配网</button>
+          <button @click="getDeviceList" class="btn">Refresh</button>
+          <button @click="showControl()" class="btn">Network</button>
         </div>
         <esp-table ref="deviceListTable" @selection-change="selectDevice" :th-headers="thHeaders" :data="filterList">
           <template slot-scope="scope">
-            <span @click="showInfo(scope.row)" class="btn-mini">配网</span>
+            <span @click="showInfo(scope.row)" class="btn-mini">Distribution net</span>
           </template>
         </esp-table>
       </div>

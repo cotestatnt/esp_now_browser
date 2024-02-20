@@ -48,7 +48,7 @@
     </div>
     <div class="table">
       <h3 class="name flex flex-ac flex-jcs">
-        <span>设备列表</span>
+        <span>Device List</span>
         <div class="filter-wrap">
           <div class="search-item">
             <v-select @input="selectAppVersion"  :options="appVersions" v-model="searchName"></v-select>
@@ -57,58 +57,58 @@
       </h3>
       <div class="info">
         <div class="btn-wrap">
-          <button @click="getDeviceList" class="btn">刷新列表</button>
-          <button @click="showLog" :class="{'active': isShowLog}" class="btn">日志配置</button>
-          <button @click="showStatistic" class="btn" :class="{'active': isShowStatistics}">日志分析</button>
-          <button @click="showModal(COMMAND_EXPORT)" class="btn">日志导出</button>
+          <button @click="getDeviceList" class="btn">Refresh list</button>
+          <button @click="showLog" :class="{'active': isShowLog}" class="btn">Log configuration</button>
+          <button @click="showStatistic" class="btn" :class="{'active': isShowStatistics}">Log analysis</button>
+          <button @click="showModal(COMMAND_EXPORT)" class="btn">Log export</button>
           <span class="line"></span>
-          <button @click="showModal(COMMAND_RESET)" class="btn">设备重置</button>
-          <button @click="showModal(COMMAND_REBOOT)" class="btn">设备重启</button>
-          <button @click="showModal(COMMAND_WIFI_CONFIG)" class="btn">Wi-Fi 配置</button>
-          <button @click="configCommand(COMMAND_WIFI_INFO)" class="btn">Wi-Fi 信息</button>
+          <button @click="showModal(COMMAND_RESET)" class="btn">Device reset</button>
+          <button @click="showModal(COMMAND_REBOOT)" class="btn">Device restart</button>
+          <button @click="showModal(COMMAND_WIFI_CONFIG)" class="btn">Wi-Fi Configuration</button>
+          <button @click="configCommand(COMMAND_WIFI_INFO)" class="btn">Wi-Fi information</button>
 <!--          <button @click="configCommand(COMMAND_VERSION)" class="btn">GPIO</button>-->
 <!--          <button @click="configCommand(COMMAND_VERSION)" class="btn">UART</button>-->
-          <button @click="configCommand(COMMAND_HEAP)" class="btn">内存使用</button>
-          <button @click="showModal(COMMAND_CUSTOM)" class="btn">自定义命令</button>
+          <button @click="configCommand(COMMAND_HEAP)" class="btn">Memory use</button>
+          <button @click="showModal(COMMAND_CUSTOM)" class="btn">Custom command</button>
         </div>
         <esp-table ref="deviceListTable" @selection-change="selectDevice" :th-headers="thHeaders" :data="filterList">
           <template slot-scope="scope">
-            <span @click="showInfo(scope.row)" class="btn-mini">详情</span>
+            <span @click="showInfo(scope.row)" class="btn-mini">Detail</span>
           </template>
         </esp-table>
       </div>
     </div>
     <div v-if="isShowStatistics" class="statistics">
-      <h3 class="name">数据统计</h3>
+      <h3 class="name">Statistics</h3>
       <div class="info">
         <canvas id="echarts"></canvas>
       </div>
     </div>
     <div v-show="isShowLog" class="log">
       <h3 class="name flex flex-ac flex-jcs">
-        <span>日志展示</span>
+        <span>Log display</span>
         <div class="operate-wrap"><span v-if="getOperateClass(index)" @click="selectLayout(icon.id)" :class="{'active': layout === icon.id}" :key="icon.id" v-for="(icon, index) in layoutList"><i :class="icon.icon"  class="iconfont"></i></span></div>
       </h3>
       <div class="info">
         <div :class="getLayoutClass()" class="item-wrap" :key="item['src_addr']" v-for="(item, index) in filterLogs">
           <div class="item">
             <div class="header">
-              <p><span class="title">{{item['src_addr']}}</span><span class="num">({{item.list.length}}条日志)</span><span @click="showExportLog([item])" class="export">导出</span></p>
+              <p><span class="title">{{item['src_addr']}}</span><span class="num">({{item.list.length}}Script)</span><span @click="showExportLog([item])" class="export">Export</span></p>
               <i @click="deleteLog(index, item['src_addr'])" class="iconfont icon-error"></i>
             </div>
             <div class="body">
               <div class="content">
                 <div class="item-log item-header">
-                  <div class="item-log-time">时间</div>
-                  <div class="item-log-level" :class="{'active': filterLogLevel[item['src_addr']] && filterLogLevel[item['src_addr']][log_level].length > 0}">类型<i @click.stop="showFilter(item['src_addr'])" class="iconfont icon-left"></i>
+                  <div class="item-log-time">time</div>
+                  <div class="item-log-level" :class="{'active': filterLogLevel[item['src_addr']] && filterLogLevel[item['src_addr']][log_level].length > 0}">type<i @click.stop="showFilter(item['src_addr'])" class="iconfont icon-left"></i>
                     <div :ref="`${item['src_addr']}-level`" style="display: none" class="ul-wrap">
                       <ul>
                         <li @click.stop="selectLogLevel(label, item['src_addr'])" :class="{'active': filterLogLevel[item['src_addr']] && filterLogLevel[item['src_addr']][log_level].includes(label)}" :key="label" v-for="label in select_list">{{label}}</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="item-log-tag">标签</div>
-                  <div class="item-log-data">日志</div>
+                  <div class="item-log-tag">Label</div>
+                  <div class="item-log-data">log</div>
                 </div>
                 <div class="item-log-wrap" :ref="item['src_addr']">
                   <div class="item-log" :key="index" v-for="(item, index) in getFilterLogList(item.list)">
@@ -134,30 +134,30 @@
         </div>
         <p v-else>{{modeText}}</p>
         <div class="btn-wrap">
-          <button @click="isShowModal=false" class="btn btn-danger">取消</button>
-          <button @click="operateEvent" class="btn">{{operateType === COMMAND_CUSTOM ? '发送' : '确定'}}</button>
+          <button @click="isShowModal=false" class="btn btn-danger">Cancel</button>
+          <button @click="operateEvent" class="btn">{{operateType === COMMAND_CUSTOM ? 'send' : 'ok'}}</button>
         </div>
       </div>
     </div>
     <div v-show="isShowWifiModal" class="operate-modal-wrap operate-modal-mini-wrap">
       <div @click="isShowWifiModal=false" class="mask"></div>
       <div class="content">
-        <h3>Wi-Fi 配置</h3>
+        <h3>Wi-Fi Configuration</h3>
         <div class="item-wrap wifi-config-wrap">
           <div class="item">
-            <label>国家：</label>
+            <label>Country:</label>
             <div class="input-wrap">
               <v-select @input="changeCountry" :options="countryCodeList" v-model="countryCode"></v-select>
             </div>
           </div>
           <div class="item">
-            <label>信道：</label>
+            <label>Channel:</label>
             <div class="input-wrap">
               <v-select :options="getChannelList()" v-model="channel"></v-select>
             </div>
           </div>
           <div class="item">
-            <label>模式：</label>
+            <label>Mode:</label>
             <div class="input-wrap">
               <v-select :options="wifiModeList" v-model="wifiMode"></v-select>
             </div>
@@ -175,37 +175,37 @@
             </div>
           </div>
           <div class="item">
-            <label>密码：</label>
+            <label>Password:</label>
             <div class="input-wrap">
               <input class="form-control" v-model="password" >
             </div>
           </div>
         </div>
         <div class="btn-wrap">
-          <button @click="isShowWifiModal=false" class="btn btn-danger">取消</button>
-          <button @click="setWifiConfig" class="btn">确定</button>
+          <button @click="isShowWifiModal=false" class="btn btn-danger">Cancel</button>
+          <button @click="setWifiConfig" class="btn">OK</button>
         </div>
       </div>
     </div>
     <div v-show="isShowLogModal" class="operate-modal-wrap operate-modal-mini-wrap">
       <div @click="isShowLogModal=false" class="mask"></div>
       <div class="content">
-        <h3>日志配置</h3>
+        <h3>Log configuration</h3>
         <div class="item-wrap wifi-config-wrap">
           <div class="item">
-            <label>传输方式：</label>
+            <label>Transfer method:</label>
             <div class="input-wrap">
               <v-select :options="logModeList" v-model="logMode"></v-select>
             </div>
           </div>
           <div class="item">
-            <label>日志模块：</label>
+            <label>Log module:</label>
             <div class="input-wrap">
               <input class="form-control" v-model="logTag" >
             </div>
           </div>
           <div class="item">
-            <label>日志等级：</label>
+            <label>Log level:</label>
             <div class="input-wrap">
               <div class="input-wrap">
                 <v-select :options="logLevelList" v-model="logLevel"></v-select>
@@ -214,8 +214,8 @@
           </div>
         </div>
         <div class="btn-wrap">
-          <button @click="isShowLogModal=false" class="btn btn-danger">取消</button>
-          <button @click="setLogConfig" class="btn">确定</button>
+          <button @click="isShowLogModal=false" class="btn btn-danger">Cancel</button>
+          <button @click="setLogConfig" class="btn">OK</button>
         </div>
       </div>
     </div>
@@ -259,7 +259,7 @@ export default {
       layoutList: [{id: 1, icon: 'icon-one'}, {id: 2, icon: 'icon-two'}, {id: 3, icon: 'icon-three'}, {id: 4, icon: 'icon-four'}],
       layout: 2,
       searchName: '',
-      title: '设备升级',
+      title: 'Equipment upgrade',
       winWidth: 1170,
       thHeaders: TH_HEADERS,
       select_list: [LOG_INFO_TEXT, LOG_WARNING_TEXT, LOG_ERROR_TEXT],
@@ -384,7 +384,7 @@ export default {
     },
     showModal (type) {
       if (this.selectMacs.length === 0) {
-        this.$notify({ type: 'warning', message: '请选择设备' })
+        this.$notify({ type: 'warning', message: 'Please select the device' })
         return
       }
       this.operateType = type
@@ -394,22 +394,22 @@ export default {
       }
       this.isShowModal = true
       if (this.operateType === COMMAND_RESET) {
-        this.title = '设备重置'
-        this.modeText = '确定要重置选中的设备吗？'
+        this.title = 'Device reset'
+        this.modeText = 'Are you sure you want to reset the selected equipment?'
         return
       }
       if (this.operateType === COMMAND_REBOOT) {
-        this.title = '设备重启'
-        this.modeText = '确定要重启选中的设备吗？'
+        this.title = 'Device restart'
+        this.modeText = 'Are you sure you want to restart the selected equipment?'
         return
       }
       if (this.operateType === COMMAND_CUSTOM) {
-        this.title = '自定义命令'
+        this.title = 'Custom command'
         return
       }
       if (this.operateType === COMMAND_EXPORT) {
-        this.title = '日志导出'
-        this.modeText = '确定要导出选中的设备日志吗？'
+        this.title = 'Log export'
+        this.modeText = 'Are you sure you want to export the selected equipment log?'
       }
     },
     selectAppVersion (name) {
@@ -417,7 +417,7 @@ export default {
     },
     configCommand (type) {
       if (this.selectMacs.length === 0) {
-        this.$notify({ type: 'warning', message: '请选择设备' })
+        this.$notify({ type: 'warning', message: 'Please select the device' })
         return
       }
       this.$loading.show()
@@ -432,16 +432,16 @@ export default {
       configCommand(this.selectMacs, command).then(res => {
         console.log(res)
         this.$loading.hide()
-        this.$notify({ type: 'success', message: '发送成功' })
+        this.$notify({ type: 'success', message: 'Sent successfully' })
       }).catch(err => {
         console.log(err)
         this.$loading.hide()
-        this.$notify({ type: 'error', message: '发送失败' })
+        this.$notify({ type: 'error', message: 'Failed to send' })
       })
     },
     operateEvent () {
       if (this.operateType === COMMAND_CUSTOM && isEmpty(this.customCommand)) {
-        this.$notify({ type: 'warning', message: '请输入自定义命令' })
+        this.$notify({ type: 'warning', message: 'Please enter the custom command' })
         return
       }
       console.log(this.operateType, COMMAND_RESET)
@@ -477,7 +477,7 @@ export default {
         let file = this.$refs.file.files[0]
         if (file.type !== FILE_BIN_TYPE) {
           this.$refs.file.value = ''
-          this.$notify({ type: 'warning', message: '请选择 Bin 文件' })
+          this.$notify({ type: 'warning', message: 'please choose Bin document' })
           return
         }
         this.fileName = file.name
@@ -650,7 +650,7 @@ export default {
         return
       }
       if (self.logList.length === 0) {
-        self.$notify({ type: 'warning', message: '暂无日志可分析' })
+        self.$notify({ type: 'warning', message: 'There is no log can be analyzed' })
         return
       }
       self.isShowStatistics = true
@@ -784,7 +784,7 @@ export default {
     },
     showLog () {
       if (this.selectMacs.length === 0) {
-        this.$notify({ type: 'warning', message: '请选择设备' })
+        this.$notify({ type: 'warning', message: 'Please select the device' })
         return
       }
       this.isShowLogModal = true

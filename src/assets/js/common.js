@@ -49,7 +49,7 @@ const initWs = () => {
       WEBSOCKET = new WebSocket(
         encodeURI(`ws://${HOST_IP}:80/debug/recv`))
       WEBSOCKET.onopen = () => {
-        console.log('已连接')
+        console.log('connected')
         WEBSOCKET.send('Trigger async')
         getDeviceList()
         // setInterval(() => {
@@ -57,15 +57,15 @@ const initWs = () => {
         // }, 60000)
       }
       WEBSOCKET.onerror = () => {
-        console.log('连接发生错误')
+        console.log('Error occurred in the connection')
         setTimeout(() => {
           initWs()
         }, 20000)
       }
       WEBSOCKET.onclose = () => {
-        console.log('已经断开连接')
+        console.log('Has been disconnected')
       }
-      // 消息接收
+      // Message receiving
       WEBSOCKET.onmessage = (res) => {
         try {
           res = res?.data
@@ -83,7 +83,7 @@ const initWs = () => {
       }
       return WEBSOCKET
     } else {
-      alert('该浏览器不支持WebSocket。<br/>建议使用高版本的浏览器，<br/>如 IE10、火狐 、谷歌  、搜狗等')
+      alert('The browser does not support WebSocket')
     }
   } catch (e) {
     console.log(e)

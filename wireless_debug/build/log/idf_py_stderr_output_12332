@@ -1,0 +1,2 @@
+warning: default value 0 on ESPNOW_OTA_SEND_FORWARD_TTL (defined at C:/Espressif/frameworks/esp-idf-v5.2-2/wireless_debug/managed_components/espressif__esp-now/Kconfig:130) clamped to 1 due to being outside the active range ([1, 31])
+Project commit: v5.2

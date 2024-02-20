@@ -17,11 +17,11 @@ export default {
       curUrl: '',
       winWidth: 1170,
       urlList: [
-        {label: '设备调试', url: '/', icon: 'icon-debug', show: true},
-        {label: '设备升级', url: '/ota', icon: 'icon-ota', show: true},
-        {label: '设备控制', url: '/control', icon: 'icon-control', show: true},
-        {label: '设备配网', url: '/wifi', icon: 'icon-config', show: true},
-        {label: '生产测试', url: '/test', icon: 'icon-test', show: true}
+        {label: 'Debug', url: '/', icon: 'icon-debug', show: true},
+        {label: 'Upgrade', url: '/ota', icon: 'icon-ota', show: true},
+        {label: 'Control', url: '/control', icon: 'icon-control', show: true},
+        {label: 'Network', url: '/wifi', icon: 'icon-config', show: true},
+        {label: 'Production', url: '/test', icon: 'icon-test', show: true}
       ]
     }
   },
@@ -47,19 +47,19 @@ export default {
     resetMenu () {
       if (this.winWidth > 900) {
         this.urlList = [
-          {label: '设备调试', url: '/', icon: 'icon-debug', show: true},
-          {label: '设备升级', url: '/ota', icon: 'icon-ota', show: true},
-          {label: '设备控制', url: '/control', icon: 'icon-control', show: true},
-          {label: '设备配网', url: '/wifi', icon: 'icon-config', show: true},
-          {label: '生产测试', url: '/test', icon: 'icon-test', show: true}
+          {label: 'Debug', url: '/', icon: 'icon-debug', show: true},
+          {label: 'Upgrade', url: '/ota', icon: 'icon-ota', show: true},
+          {label: 'Control', url: '/control', icon: 'icon-control', show: true},
+          {label: 'Network', url: '/wifi', icon: 'icon-config', show: true},
+          {label: 'Production', url: '/test', icon: 'icon-test', show: true}
         ]
       } else {
         this.urlList = [
-          {label: '调试', url: '/', icon: 'icon-debug'},
-          {label: '升级', url: '/devices', icon: 'icon-ota'},
-          {label: '控制', url: '/control', icon: 'icon-control'},
-          {label: '配网', url: '/wifi', icon: 'icon-config'},
-          {label: '测试', url: '/test', icon: 'icon-test'}
+          {label: 'Debug', url: '/', icon: 'icon-debug'},
+          {label: 'Upgrade', url: '/ota', icon: 'icon-ota'},
+          {label: 'Control', url: '/control', icon: 'icon-control'},
+          {label: 'Network', url: '/wifi', icon: 'icon-config'},
+          {label: 'Production', url: '/test', icon: 'icon-test'}
         ]
       }
     }

@@ -1,42 +1,42 @@
 <template>
   <div class="main-wrap">
     <div class="device-info">
-      <h3 class="name">设备信息</h3>
+      <h3 class="name">Device Information</h3>
       <div class="info">
         <div class="content">
           <div class="item">
-            <label>项目名称: </label>
+            <label>Project name: </label>
             <span>{{filterInfo['project_name'] || '--'}}</span>
           </div>
           <div class="item">
-            <label>项目名称: </label>
+            <label>Project name: </label>
             <span>{{filterInfo['project_name'] || '--'}}</span>
           </div>
           <div class="item">
-            <label>Mac 地址: </label>
+            <label>Mac address: </label>
             <span>{{filterInfo['src_addr'] || '--'}}</span>
           </div>
           <div class="item">
-            <label>信号: </label>
+            <label>Signal: </label>
             <span>{{filterInfo['rssi'] || '--'}}</span>
           </div>
           <div class="item">
-            <label>应用版本: </label>
+            <label>App: </label>
             <span>{{filterInfo['app_version'] || '--'}}</span>
           </div>
           <div class="item">
-            <label>IDF 版本: </label>
+            <label>IDF Version: </label>
             <span>{{filterInfo['esp-idf_version'] || '--'}}</span>
           </div>
           <div class="item">
-            <label>编译时间: </label>
+            <label>Compile time: </label>
             <span>{{filterInfo['compile_time'] || '--'}}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="main">
-      <h3 class="name">数据展示</h3>
+      <h3 class="name">Data Display</h3>
       <div class="info">
         <div class="item">
           <div ref="canvasWrap" class="">
@@ -50,13 +50,13 @@
       </div>
     </div>
     <div v-if="getNum(filterLog) > 0" class="log device-info-log">
-      <h3 class="name">日志展示</h3>
+      <h3 class="name">Log display</h3>
       <div class="info">
         <div class="item-wrap col-1">
           <div class="item">
             <div class="header flex flex-jcs">
               <div class="flex flex-ac">
-                <p><span class="title">{{filterLog['src_addr']}}</span><span class="num">({{getNum(filterLog)}}条日志)</span></p>
+                <p><span class="title">{{filterLog['src_addr']}}</span><span class="num">({{getNum(filterLog)}}Script)</span></p>
                 <div class="header-log-level">
                   <div class="item crash-wrap">
                     <p class="title">Crash: </p>
@@ -76,21 +76,21 @@
                   </div>
                 </div>
               </div>
-              <span class="export" @click="showExportLog([filterLog])">导出</span>
+              <span class="export" @click="showExportLog([filterLog])">Export</span>
             </div>
             <div class="body">
               <div class="content">
                 <div class="item-log item-header">
-                  <div class="item-log-time">时间</div>
-                  <div class="item-log-level" :class="{'active': selectedType.length > 0}">类型<i @click.stop="isShowType = !isShowType" class="iconfont icon-left"></i>
+                  <div class="item-log-time">time</div>
+                  <div class="item-log-level" :class="{'active': selectedType.length > 0}">type<i @click.stop="isShowType = !isShowType" class="iconfont icon-left"></i>
                     <div v-show="isShowType" class="ul-wrap">
                       <ul>
                         <li @click.stop="selectLogLevel(label)" :class="{'active': selectedType.includes(label)}" :key="label" v-for="label in select_list">{{label}}</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="item-log-tag">标签</div>
-                  <div class="item-log-data">日志</div>
+                  <div class="item-log-tag">Label</div>
+                  <div class="item-log-data">log</div>
                 </div>
                 <div class="item-log-wrap" :ref="filterLog['src_addr']">
                   <div class="item-log" :key="index" v-for="(item, index) in getFilterLogList(filterLog.list)">

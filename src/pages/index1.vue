@@ -91,16 +91,16 @@ export default {
       }
     },
     addNewLine (e) {
-      // 1.获取光标位置
+      // 1.Get the cursor position
       const ele = e.target
       const cursorIndex = ele.selectionStart
 
-      // 2.光标后加入换行符
+      // 2.Add the change in the cursor after the cursor
       let tempValue = this.value.split('')
       tempValue.splice(cursorIndex, 0, '\n')
       this.value = tempValue.join('')
 
-      // 3.移动光标
+      // 3.Mobile cursor
       ele.selectionStart = ele.selectionEnd = cursorIndex + 1
     }
   }

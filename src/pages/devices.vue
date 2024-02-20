@@ -2,7 +2,7 @@
   <div class="main-wrap">
     <div class="table">
       <h3 class="name flex flex-ac flex-jcs">
-        <span>设备列表</span>
+        <span>Device List</span>
         <div class="filter-wrap">
           <div class="search-item">
             <v-select :options="appVersions" v-model="searchName"></v-select>
@@ -11,13 +11,13 @@
       </h3>
       <div class="info">
         <div class="btn-wrap">
-          <button @click="getDeviceList" class="btn">刷新列表</button>
-          <button @click="showModal(COMMAND_OTA)" class="btn">版本升级</button>
-          <button @click="showModal(COMMAND_BACK)" class="btn">版本回退</button>
+          <button @click="getDeviceList" class="btn">Refresh list</button>
+          <button @click="showModal(COMMAND_OTA)" class="btn">Version upgrade</button>
+          <button @click="showModal(COMMAND_BACK)" class="btn">Version back</button>
         </div>
         <esp-table ref="deviceListTable" @selection-change="selectDevice" :th-headers="thHeaders" :data="filterList">
           <template slot-scope="scope">
-            <span @click="showInfo(scope.row)" class="btn-mini">详情</span>
+            <span @click="showInfo(scope.row)" class="btn-mini">Detail</span>
           </template>
         </esp-table>
       </div>
@@ -29,19 +29,19 @@
         <div  v-if="operateType === COMMAND_OTA"  class="filter-wrap">
           <div class="bin-wrap">
             <div class="bin-content">
-              <label for="bin-file">BIN 文件：</label>
+              <label for="bin-file">BIN document:</label>
               <div class="file-wrap">
                 <input id="bin-file" @change="getFile" accept=".bin" type="file" ref="file"/>
-                <div class="file-btn">选取文件</div>
+                <div class="file-btn">Select file</div>
               </div>
             </div>
             <div class="file-name">{{fileName}}</div>
           </div>
         </div>
-        <p v-else>确定要对选中的设备进行版本回退吗？</p>
+        <p v-else>Are you sure to return the version of the selected equipment?</p>
         <div class="btn-wrap">
-          <button @click="isShowModal=false" class="btn btn-danger">取消</button>
-          <button @click="operateEvent" class="btn">确定</button>
+          <button @click="isShowModal=false" class="btn btn-danger">Cancel</button>
+          <button @click="operateEvent" class="btn">YES</button>
         </div>
       </div>
     </div>
@@ -53,15 +53,15 @@
           <div class="item-wrap flex-1" :key="item['src_addr']" v-for="item in filterLogs">
             <div class="item">
               <div class="header">
-                <p><span class="title">{{item['src_addr']}}</span><span class="num">({{item.list.length}}条日志)</span></p>
+                <p><span class="title">{{item['src_addr']}}</span><span class="num">({{item.list.length}}Script)</span></p>
               </div>
               <div class="body">
                 <div class="content">
                   <div class="item-log item-header">
-                    <div class="item-log-time">时间</div>
-                    <div class="item-log-level">类型</div>
-                    <div class="item-log-tag">标签</div>
-                    <div class="item-log-data">日志</div>
+                    <div class="item-log-time">time</div>
+                    <div class="item-log-level">type</div>
+                    <div class="item-log-tag">label</div>
+                    <div class="item-log-data">log</div>
                   </div>
                   <div class="item-log-wrap" :ref="item['src_addr']">
                     <div class="item-log" :key="index" v-for="(item, index) in item.list">
@@ -94,7 +94,7 @@ export default {
       COMMAND_OTA: COMMAND_OTA,
       COMMAND_BACK: COMMAND_BACK,
       searchName: '',
-      title: '选择 Bin 文件',
+      title: 'Choose bin file',
       thHeaders: TH_HEADERS,
       deviceList: [],
       selectMacs: [],
@@ -149,17 +149,17 @@ export default {
   methods: {
     showModal (type) {
       if (this.selectMacs.length === 0) {
-        this.$notify({ type: 'warning', message: '请选择设备' })
+        this.$notify({ type: 'warning', message: 'Please select the device' })
         return
       }
       this.operateType = type
       this.isShowModal = true
       if (this.operateType === COMMAND_OTA) {
-        this.title = '选择 Bin 文件'
+        this.title = 'Choose bin file'
         return
       }
       if (this.operateType === COMMAND_BACK) {
-        this.title = '版本回退'
+        this.title = 'Version back'
       }
     },
     getLogLevelClass (item) {
@@ -183,7 +183,7 @@ export default {
         let file = this.$refs.file.files[0]
         if (file?.type !== FILE_BIN_TYPE) {
           this.$refs.file.value = ''
-          this.$notify({ type: 'warning', message: '请选择 Bin 文件' })
+          this.$notify({ type: 'warning', message: 'Choose bin file' })
           return
         }
       }
@@ -201,7 +201,7 @@ export default {
         let file = this.$refs.file.files[0]
         if (file.type !== FILE_BIN_TYPE) {
           this.$refs.file.value = ''
-          this.$notify({ type: 'warning', message: '请选择 Bin 文件' })
+          this.$notify({ type: 'warning', message: 'please choose bin file' })
           return
         }
         this.fileName = `${file.name}  ${(file.size / (1024 * 1024)).toFixed(2)} M`
@@ -212,7 +212,7 @@ export default {
       let file = this.$refs.file.files[0]
       if (file?.type !== FILE_BIN_TYPE) {
         this.$refs.file.value = ''
-        this.$notify({ type: 'warning', message: '请选择 Bin 文件' })
+        this.$notify({ type: 'warning', message: 'please choose bin file' })
         return
       }
       this.isShowModal = false

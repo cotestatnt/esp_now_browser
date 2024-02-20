@@ -2,7 +2,7 @@
   <div class="main-wrap">
     <div class="table">
       <h3 class="name flex flex-ac flex-jcs">
-        <span>设备列表</span>
+        <span>Device List</span>
         <div class="filter-wrap">
           <div class="search-item">
             <v-select @input="selectAppVersion" :options="appVersions" v-model="searchName"></v-select>
@@ -11,29 +11,29 @@
       </h3>
       <div class="info">
         <div class="btn-wrap">
-          <button @click="getDeviceList" class="btn">刷新列表</button>
-          <button class="btn">产测</button>
+          <button @click="getDeviceList" class="btn">Refresh</button>
+          <button class="btn">Production measurement</button>
         </div>
         <esp-table ref="deviceListTable" @selection-change="selectDevice" :th-headers="thHeaders" :data="filterList">
           <template slot-scope="scope">
-            <span @click="showInfo(scope.row)" class="btn-mini">控制</span>
+            <span @click="showInfo(scope.row)" class="btn-mini">control</span>
           </template>
         </esp-table>
       </div>
       <div class="production-test">
-        <h3 class="name">产测</h3>
+        <h3 class="name">Production measurement</h3>
         <div class="info">
           <div class="item-wrap">
-            <h3>硬件版本</h3>
+            <h3>Hardware Version</h3>
             <div class="item-content">
               <div class="item">
-                <label>Flash 版本：</label>
+                <label>Flash Version:</label>
                 <div class="item-value">
                   <v-select :options="flashList" v-model="flash"></v-select>
                 </div>
               </div>
               <div class="item">
-                <label>芯片版本：</label>
+                <label>Chip version:</label>
                 <div class="item-value">
                   <v-select :options="chipList" v-model="chip"></v-select>
                 </div>
@@ -41,16 +41,16 @@
             </div>
           </div>
           <div class="item-wrap">
-            <h3>软件版本</h3>
+            <h3>Software version</h3>
             <div class="item-content">
               <div class="item">
-                <label>应用版本：</label>
+                <label>Application version:</label>
                 <div class="item-value">
                   <v-select :options="appList" v-model="app"></v-select>
                 </div>
               </div>
               <div class="item">
-                <label>Idf 版本：</label>
+                <label>Idf Version:</label>
                 <div class="item-value">
                   <v-select :options="idfList" v-model="idf"></v-select>
                 </div>
@@ -58,10 +58,10 @@
             </div>
           </div>
           <div class="item-wrap">
-            <h3>无线性能</h3>
+            <h3>Wireless</h3>
             <div class="item-content">
               <div class="item">
-                <label>RSSI 强度：</label>
+                <label>RSSI strength:</label>
                 <div class="item-value">
                   <vue-slider :min="-120" :max="0" :dotSize="dotSize" v-model="rssi"></vue-slider>
                 </div>
@@ -73,16 +73,16 @@
                 </div>
               </div>
               <div class="item">
-                <label>时延：</label>
+                <label>Delay:</label>
                 <input type="text" class="form-control" />
               </div>
             </div>
           </div>
           <div class="item-wrap">
-            <h3>硬件性能</h3>
+            <h3>Hardware performance</h3>
             <div class="item-content">
               <div class="item">
-                <label>温度测试：</label>
+                <label>Temperature test:</label>
                 <input type="text" class="form-control" />
               </div>
             </div>
